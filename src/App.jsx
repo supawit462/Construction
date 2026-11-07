@@ -12,15 +12,24 @@ import Footer from "./components/Footer.jsx";
 export default function App() {
   // แบบบ้านที่ลูกค้ากด "สอบถามราคา" — ส่งต่อไปเติมในฟอร์มติดต่อ
   const [askedPlan, setAskedPlan] = useState(null);
+  // สไตล์บ้านที่เลือก — ใช้ร่วมกันระหว่างเมนู (dropdown แบบบ้าน) และส่วนแบบบ้าน
+  const [style, setStyle] = useState("all");
+
+  const pickStyleFromMenu = (key) => {
+    setStyle(key);
+    requestAnimationFrame(() =>
+      document.querySelector(".plans__head")?.scrollIntoView({ behavior: "smooth", block: "start" })
+    );
+  };
 
   return (
     <>
       <a className="skip" href="#main">ข้ามไปเนื้อหาหลัก</a>
-      <Nav />
+      <Nav onPickStyle={pickStyleFromMenu} activeStyle={style} />
       <main id="main">
         <Hero />
         <About />
-        <Plans onAskPlan={(code) => setAskedPlan({ code, at: Date.now() })} />
+        <Plans style={style} setStyle={setStyle} onAskPlan={(code) => setAskedPlan({ code, at: Date.now() })} />
         <Process />
         <Reviews />
         <Contact askedPlan={askedPlan} />

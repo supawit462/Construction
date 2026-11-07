@@ -15,9 +15,11 @@ export const CONTACT = {
   pageName: "Baiboon Home รับสร้างบ้านครบวงจร",
 };
 
+// เมนูด้านบน — รายการที่มี dropdown: true จะแสดงสไตล์บ้าน 5 แบบให้เลือก
 export const NAV = [
+  { id: "home", label: "หน้าแรก" },
   { id: "about", label: "เกี่ยวกับเรา" },
-  { id: "plans", label: "แบบบ้าน" },
+  { id: "plans", label: "แบบบ้าน", dropdown: true },
   { id: "process", label: "ขั้นตอนการสร้าง" },
   { id: "reviews", label: "รีวิว" },
   { id: "contact", label: "ติดต่อเรา" },

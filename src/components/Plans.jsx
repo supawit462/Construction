@@ -10,8 +10,8 @@ const FLOORS = [
   { value: "2", label: "บ้านสองชั้น" },
 ];
 
-export default function Plans({ onAskPlan }) {
-  const [style, setStyle] = useState("all");
+// style / setStyle มาจาก App เพื่อให้เมนูด้านบนเลือกสไตล์ได้ด้วย
+export default function Plans({ onAskPlan, style, setStyle }) {
   const [floors, setFloors] = useState("all");
   const trackRef = useRef(null);
   const headRef = useRef(null);

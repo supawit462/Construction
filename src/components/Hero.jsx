@@ -35,7 +35,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero" aria-labelledby="heroTitle">
+    <section className="hero" id="home" aria-labelledby="heroTitle">
       <div className="hero__media" aria-hidden="true">
         {src ? (
           <video
