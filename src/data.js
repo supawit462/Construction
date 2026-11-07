@@ -23,6 +23,16 @@ export const NAV = [
   { id: "contact", label: "ติดต่อเรา" },
 ];
 
+// วิดีโอ Hero — จาก Coverr (ใช้เชิงพาณิชย์บนเว็บไซต์ได้ฟรี ตาม Coverr License)
+// https://coverr.co/videos/villa-with-a-swimming-pool
+const COVERR = "https://cdn.coverr.co/videos/coverr-villa-with-a-swimming-pool-6618";
+export const HERO_VIDEO = {
+  hd: `${COVERR}/1080p.mp4`,
+  sd: `${COVERR}/720p.mp4`,
+  poster: `${COVERR}/thumbnail?width=1280`,
+  alt: "บ้านหลังใหญ่ สนามหญ้าเขียว และสระว่ายน้ำ ในแสงแดดยามเย็น",
+};
+
 export const PHOTOS = {
   hero: { id: "1600585154340-be6161a56a0c", alt: "บ้านโมเดิร์นสองชั้นยามค่ำ ไฟในบ้านสีอุ่น ใต้ร่มไม้ใหญ่" },
   about: { id: "1541888946425-d81bb19240f5", alt: "ทีมวิศวกรและช่างตรวจงานที่ไซต์ก่อสร้าง" },

@@ -1,15 +1,61 @@
-import { CONTACT, PHOTOS, srcSet, unsplash } from "../data.js";
+import { useEffect, useRef, useState } from "react";
+import { CONTACT, HERO_VIDEO } from "../data.js";
 import logo from "../assets/logo-mark.svg";
-import leaf from "../assets/leaf.svg";
+
+// เลือกไฟล์วิดีโอตามขนาดจอ / โหมดประหยัดเน็ต / ตั้งค่าลดการเคลื่อนไหว
+function pickVideo() {
+  if (typeof window === "undefined") return null;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saveData = navigator.connection?.saveData;
+  if (reduce || saveData) return null;
+  return window.innerWidth <= 900 ? HERO_VIDEO.sd : HERO_VIDEO.hd;
+}
 
 export default function Hero() {
+  const videoRef = useRef(null);
+  const [src] = useState(pickVideo);
+  const [playing, setPlaying] = useState(Boolean(src));
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !src) return;
+    v.play().catch(() => setPlaying(false)); // บางเบราว์เซอร์บล็อกการเล่นอัตโนมัติ
+  }, [src]);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
+
   return (
     <section className="hero" aria-labelledby="heroTitle">
-      <div className="hero__leaves" aria-hidden="true">
-        {[1, 2, 3].map((n) => <img key={n} src={leaf} alt="" className={`leaf leaf--${n}`} />)}
+      <div className="hero__media" aria-hidden="true">
+        {src ? (
+          <video
+            ref={videoRef}
+            className="hero__video"
+            src={src}
+            poster={HERO_VIDEO.poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <img className="hero__video" src={HERO_VIDEO.poster} alt="" />
+        )}
+        <div className="hero__shade" />
       </div>
 
-      <div className="container hero__grid">
+      <div className="container hero__inner">
         <div className="hero__copy">
           <p className="pill"><img src={logo} alt="" width="18" height="18" /> ชื่อใหม่… แต่ “หัวใจเดิม”</p>
           <h1 id="heroTitle">
@@ -22,7 +68,7 @@ export default function Hero() {
           </p>
           <div className="hero__actions">
             <a className="btn btn--primary" href="#contact">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
-            <a className="btn btn--ghost" href="#plans">ดูแบบบ้าน Signature</a>
+            <a className="btn btn--light" href="#plans">ดูแบบบ้าน Signature</a>
           </div>
           <ul className="hero__trust">
             <li>ทีมวิศวกรและช่างชุดเดิม</li>
@@ -31,26 +77,29 @@ export default function Hero() {
           </ul>
         </div>
 
-        <div className="hero__visual">
-          <div className="arch">
-            <img
-              src={unsplash(PHOTOS.hero.id, 1000)}
-              srcSet={srcSet(PHOTOS.hero.id, [600, 900, 1200, 1600])}
-              sizes="(max-width: 880px) 92vw, 46vw"
-              alt={PHOTOS.hero.alt}
-              fetchPriority="high"
-            />
-          </div>
-          <div className="float-card float-card--a">
+        <div className="hero__cards">
+          <div className="float-card">
             <span className="float-card__icon" aria-hidden="true">✓</span>
             <div><b>มาตรฐานเดิม</b><small>ไม่เคยเปลี่ยน</small></div>
           </div>
-          <a className="float-card float-card--b" href={`tel:${CONTACT.tel}`}>
+          <a className="float-card" href={`tel:${CONTACT.tel}`}>
             <span className="pin" aria-hidden="true" />
             <div><small>ปรึกษาฟรี โทรเลย</small><b>{CONTACT.phone}</b></div>
           </a>
         </div>
       </div>
+
+      {src && (
+        <button type="button" className="hero__toggle" onClick={toggle} aria-label={playing ? "หยุดวิดีโอ" : "เล่นวิดีโอ"}>
+          {playing ? (
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+          ) : (
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          )}
+        </button>
+      )}
+
+      <a className="hero__scroll" href="#about" aria-label="เลื่อนลงไปดูเนื้อหา"><span /></a>
 
       <svg className="hero__curve" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 120V60C240 10 480 0 720 30s480 70 720 10v80Z" />

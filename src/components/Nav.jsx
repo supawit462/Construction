@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CONTACT, NAV } from "../data.js";
+import { NAV } from "../data.js";
 import { useActiveSection } from "../hooks.js";
 import Brand from "./Brand.jsx";
 
@@ -29,7 +29,6 @@ export default function Nav() {
           ))}
         </nav>
         <div className="nav__cta">
-          <a className="nav__phone" href={`tel:${CONTACT.tel}`}>{CONTACT.phone}</a>
           <a className="btn btn--primary btn--sm" href="#contact">ปรึกษาฟรี</a>
           <button
             className="nav__toggle"
