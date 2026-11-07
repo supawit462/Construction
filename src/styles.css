@@ -235,7 +235,7 @@ p { margin: 0; }
   --c: #A8DCC6; --ink: #1E7F5C;
   position: relative; border: 0; cursor: pointer; font: inherit; color: var(--forest); text-align: center;
   display: flex; flex-direction: column; align-items: center; padding: 40px 18px 0;
-  background: linear-gradient(180deg, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #D9EEF0) 52%, #D9EEF0 100%);
+  background: linear-gradient(180deg, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #D9EEF0) 52%, #D9EEF0 82%, rgba(217, 238, 240, 0) 100%);
   transition: background .4s;
 }
 .style-col:first-child { border-radius: 24px 0 0 0; }
@@ -254,7 +254,8 @@ p { margin: 0; }
 /* รูปบ้านจริงที่ฐานเสา ไล่จางขึ้นไปหาสีของเสา */
 .style-col__photo {
   position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; width: 100%; height: 50%; object-fit: cover;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 38%); mask-image: linear-gradient(to bottom, transparent 0%, #000 38%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 38%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 38%, #000 86%, transparent 100%);
   transition: height .5s, opacity .4s, filter .4s; pointer-events: none;
 }
 .style-col > span, .style-col > svg { position: relative; z-index: 2; }
@@ -268,15 +269,25 @@ p { margin: 0; }
 .style-col:focus-visible { outline-offset: -4px; }
 .has-active .style-col:not(.is-active) { --c: #DCE7E4; }
 .has-active .style-col:not(.is-active) .style-col__photo { opacity: .5; filter: grayscale(.6); }
-/* เกาะหญ้า: จัดกึ่งกลางด้วย left 50% + translate (ไม่ใช้ margin auto ซ้อน) ให้ตรงกลางทุกขนาดจอ
-   ฐานเสาวางบนผิวหญ้าที่ระดับ y=70 ของ viewBox 1400x440 */
-.styles-stage { --iw: min(1500px, 125vw); }
+/* เกาะหญ้า (รูป src/assets/island.webp ขนาด 1920x760)
+   - จัดกึ่งกลางทุกขนาดจอ
+   - ฐานเสาวางที่ y=390 ของรูป (กลางสนามหญ้า)
+   - ชั้นหลังอยู่หลังเสา ชั้นหน้าค่อย ๆ ปรากฏจากกลางสนามลงมา เพื่อบังฐานเสา */
+.styles-stage { --iw: min(1540px, 128vw); isolation: isolate; }
 .island {
-  position: relative; z-index: 2; display: block; pointer-events: none;
-  width: var(--iw); max-width: none; height: auto; aspect-ratio: 1400 / 440;
-  margin: calc(var(--iw) * -70 / 1400) 0 0;
-  left: 50%; translate: -50% 0;
+  position: relative; display: grid; pointer-events: none;
+  width: var(--iw); aspect-ratio: 1920 / 760;
+  /* จัดกึ่งกลางด้วย margin (ไม่ใช้ transform เพราะจะทำให้ชั้นหลังลอยขึ้นมาทับเสา) */
+  margin: calc(var(--iw) * -400 / 1920) 0 0 calc((100% - var(--iw)) / 2);
 }
+.island img { grid-area: 1 / 1; width: 100%; height: 100%; display: block; }
+.island__back { position: relative; z-index: -1; }
+.island__front {
+  position: relative; z-index: 3;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 47%, #000 55%);
+  mask-image: linear-gradient(to bottom, transparent 47%, #000 55%);
+}
+.island__front { -webkit-mask-image: linear-gradient(to bottom, transparent 46%, #000 53%); mask-image: linear-gradient(to bottom, transparent 46%, #000 53%); }
 .plan__badge { position: absolute; left: 12px; top: 12px; background: rgba(255, 255, 255, .92); font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; color: var(--forest-2); }
 .plan__body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .plan__code { font-family: var(--font-head); font-size: 24px; font-weight: 600; }
@@ -425,7 +436,7 @@ p { margin: 0; }
     background:
       linear-gradient(180deg, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #D9EEF0) 55%, #D9EEF0 100%);
   }
-  .style-col__photo { height: 46%; }
+  .style-col__photo { height: 46%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 38%); mask-image: linear-gradient(to bottom, transparent 0%, #000 38%); }
   .style-col__cta { opacity: 1; transform: none; }
   .style-col.is-active::before { border-radius: 24px 24px 0 0; }
   .island { display: none; }

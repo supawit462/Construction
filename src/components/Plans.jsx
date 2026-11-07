@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { PLANS, STYLES, unsplash } from "../data.js";
-import island from "../assets/island.svg";
+import island from "../assets/island.webp";
 import Icon from "./Icon.jsx";
 
 const styleOf = (key) => STYLES.find((s) => s.key === key);
@@ -71,7 +71,11 @@ export default function Plans({ onAskPlan }) {
             ))}
           </div>
         </div>
-        <img className="island" src={island} alt="" aria-hidden="true" />
+        {/* เกาะสองชั้น: ชั้นหลังอยู่หลังเสา ชั้นหน้า (พุ่มหญ้า/หิน) บังฐานเสา */}
+        <div className="island" aria-hidden="true">
+          <img className="island__back" src={island} alt="" />
+          <img className="island__front" src={island} alt="" />
+        </div>
       </div>
 
       <div className="container">
