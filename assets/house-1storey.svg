@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="ภาพประกอบบ้านชั้นเดียว">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9D7D3"/><stop offset="1" stop-color="#EEF7F2"/></linearGradient>
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE7B2"/><stop offset="1" stop-color="#E9B867"/></linearGradient>
+  </defs>
+  <rect width="400" height="260" fill="url(#sky)"/>
+  <ellipse cx="40" cy="206" rx="64" ry="50" fill="#5E9E6E"/><ellipse cx="372" cy="200" rx="70" ry="58" fill="#4D8C5E"/>
+  <rect y="214" width="400" height="46" fill="#7DBB63"/>
+  <polygon points="60,138 150,100 250,100 340,138" fill="#3A4345"/>
+  <rect x="74" y="138" width="252" height="76" fill="#FAF8F3"/>
+  <rect x="74" y="138" width="252" height="6" fill="#E6E1D6"/>
+  <rect x="180" y="144" width="40" height="70" fill="#A0703F"/>
+  <g fill="#8A5C30"><rect x="184" y="146" width="3" height="66"/><rect x="191" y="146" width="3" height="66"/><rect x="198" y="146" width="3" height="66"/><rect x="205" y="146" width="3" height="66"/><rect x="212" y="146" width="3" height="66"/></g>
+  <g fill="url(#win)"><rect x="90" y="156" width="74" height="44" rx="2"/><rect x="236" y="156" width="36" height="44" rx="2"/><rect x="282" y="156" width="30" height="44" rx="2"/></g>
+  <g fill="#2E6B45"><circle cx="70" cy="210" r="9"/><circle cx="330" cy="210" r="9"/></g>
+  <rect x="150" y="214" width="100" height="6" fill="#D8D3C6"/>
+</svg>
