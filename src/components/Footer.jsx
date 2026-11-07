@@ -9,8 +9,7 @@ export default function Footer() {
           <Brand light size={32} />
           <p>รับสร้างบ้านครบวงจร · โทร <a href={`tel:${CONTACT.tel}`}>{CONTACT.phone}</a></p>
           <p className="footer__copy">
-            © {new Date().getFullYear()} Baiboon Home · ภาพประกอบจาก{" "}
-            <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>
+            © {new Date().getFullYear()} Baiboon Home 
           </p>
         </div>
       </footer>

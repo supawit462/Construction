@@ -57,7 +57,6 @@ export default function Hero() {
 
       <div className="container hero__inner">
         <div className="hero__copy">
-          <p className="pill"><img src={logo} alt="" width="18" height="18" /> ชื่อใหม่… แต่ “หัวใจเดิม”</p>
           <h1 id="heroTitle">
             เริ่มก้าวใหม่<br />ที่<span className="hl">อบอุ่น</span><br />
             <span className="nowrap">ไปกับ Baiboon Home</span>
@@ -70,23 +69,8 @@ export default function Hero() {
             <a className="btn btn--primary" href="#contact">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
             <a className="btn btn--light" href="#plans">ดูแบบบ้าน Signature</a>
           </div>
-          <ul className="hero__trust">
-            <li>ทีมวิศวกรและช่างชุดเดิม</li>
-            <li>ดูแลทุกขั้นตอน</li>
-            <li>แบบบ้านมีเอกลักษณ์</li>
-          </ul>
         </div>
 
-        <div className="hero__cards">
-          <div className="float-card">
-            <span className="float-card__icon" aria-hidden="true">✓</span>
-            <div><b>มาตรฐานเดิม</b><small>ไม่เคยเปลี่ยน</small></div>
-          </div>
-          <a className="float-card" href={`tel:${CONTACT.tel}`}>
-            <span className="pin" aria-hidden="true" />
-            <div><small>ปรึกษาฟรี โทรเลย</small><b>{CONTACT.phone}</b></div>
-          </a>
-        </div>
       </div>
 
       {src && (
@@ -99,7 +83,6 @@ export default function Hero() {
         </button>
       )}
 
-      <a className="hero__scroll" href="#about" aria-label="เลื่อนลงไปดูเนื้อหา"><span /></a>
 
       <svg className="hero__curve" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 120V60C240 10 480 0 720 30s480 70 720 10v80Z" />

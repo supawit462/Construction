@@ -24,7 +24,6 @@ export default function Reviews() {
         <div className="section-head section-head--center">
           <p className="eyebrow">รีวิวจากลูกค้า</p>
           <h2 id="reviewsTitle">ความสุขของครอบครัวใบบุญ</h2>
-          {REVIEWS_ARE_SAMPLE && <p className="sample-tag">ตัวอย่างรูปแบบรีวิว — รอใส่รีวิวจริง</p>}
         </div>
         <div className="reviews__grid">
           {REVIEWS.map((r, i) => <Review key={i} review={r} feature={i === 1} />)}
