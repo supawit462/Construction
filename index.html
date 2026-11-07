@@ -115,16 +115,30 @@
   <!-- 3 · HOUSE PLANS -->
   <section class="section plans" id="plans" aria-labelledby="plansTitle">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head section-head--center">
+        <p class="eyebrow">แบบบ้าน</p>
+        <h2 id="plansTitle"><span class="nowrap">ค้นพบบ้านที่ใช่</span> <span class="nowrap">ในสไตล์ที่เป็นคุณ</span></h2>
+        <p class="section-head__sub">บ้านเป็นมากกว่าที่อยู่อาศัย แต่คือพื้นที่ที่บอกตัวตนของครอบครัว เลือกสไตล์ที่ใช่ แล้วดูแบบบ้านที่ตรงใจได้ทันที</p>
+      </div>
+    </div>
+
+    <!-- เลือกบ้านตามสไตล์: ข้อมูลอยู่ใน main.js (STYLES) -->
+    <div class="styles-stage">
+      <div class="container">
+        <div class="style-cols" id="styleCols" role="group" aria-label="เลือกสไตล์บ้าน"></div>
+      </div>
+      <img class="island" src="assets/island.svg" alt="" aria-hidden="true">
+    </div>
+
+    <div class="container">
+      <div class="section-head plans__head">
         <div>
-          <p class="eyebrow">แบบบ้าน</p>
-          <h2 id="plansTitle">แบบบ้าน Signature</h2>
-          <p class="section-head__sub">เลือกแบบที่ใช่ แล้วปรับให้เข้ากับที่ดินและไลฟ์สไตล์ของครอบครัวคุณ</p>
+          <h3 class="plans__title">แบบบ้าน Signature <span id="styleLabel" class="plans__style"></span></h3>
           <!-- TODO: แทนที่ด้วยแบบบ้านจริง แล้วลบป้ายนี้ -->
           <p class="sample-tag">ตัวอย่างแบบบ้าน — รอใส่แบบและรูปจริง</p>
         </div>
         <div class="plans__tools">
-          <div class="chips" role="group" aria-label="กรองแบบบ้าน">
+          <div class="chips" role="group" aria-label="กรองจำนวนชั้น">
             <button class="chip is-active" data-filter="all" aria-pressed="true">ทั้งหมด</button>
             <button class="chip" data-filter="1" aria-pressed="false">บ้านชั้นเดียว</button>
             <button class="chip" data-filter="2" aria-pressed="false">บ้านสองชั้น</button>

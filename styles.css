@@ -197,9 +197,66 @@ p { margin: 0; }
 }
 .plan { scroll-snap-align: start; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s; }
 .plan:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-.plan__img { position: relative; aspect-ratio: 400 / 260; overflow: hidden; background: var(--sky); }
-.plan__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
-.plan:hover .plan__img img { transform: scale(1.05); }
+.plan__img {
+  position: relative; aspect-ratio: 400 / 260; overflow: hidden;
+  background:
+    linear-gradient(to top, #6FB257 0 13%, #86C467 13% 16%, transparent 16%),
+    linear-gradient(180deg, var(--tint, #BFE3E2) 0%, #EAF5F0 80%);
+}
+.plan__img img { position: absolute; left: 7%; width: 86%; bottom: 8%; transition: transform .6s; transform-origin: 50% 100%; }
+.plan:hover .plan__img img { transform: scale(1.06); }
+.plan__img--tropical { --tint: #A8DCC6; }
+.plan__img--wood { --tint: #E2C7A6; }
+.plan__img--contemporary { --tint: #B6DFE2; }
+.plan__img--family { --tint: #F1E2B4; }
+.plan__img--luxury { --tint: #C9D4CF; }
+.plans__head { margin-top: 64px; margin-bottom: 24px; align-items: center; }
+.plans__title { font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; }
+.plans__style { color: var(--leaf); display: inline-flex; align-items: center; gap: 8px; }
+.plans__clear { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; color: var(--forest); cursor: pointer; font-size: 13px; line-height: 1; }
+.plans__clear:hover { border-color: var(--leaf); color: var(--leaf); }
+.plans__empty { grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--ink-soft); background: #fff; border-radius: var(--radius); }
+
+/* เลือกบ้านตามสไตล์ — เสาสี 5 สไตล์ + บ้านบนเกาะหญ้า */
+.styles-stage { position: relative; margin-top: 8px; overflow: hidden; padding-bottom: 8px; }
+.style-cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 540px; position: relative; }
+.style-col {
+  --c: #A8DCC6; --ink: #1E7F5C;
+  position: relative; border: 0; cursor: pointer; font: inherit; color: var(--forest); text-align: center;
+  display: flex; flex-direction: column; align-items: center; padding: 40px 18px 0;
+  background: linear-gradient(180deg, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #D9EEF0) 52%, #D9EEF0 100%);
+  transition: background .4s;
+}
+.style-col:first-child { border-radius: 24px 0 0 0; }
+.style-col:last-child { border-radius: 0 24px 0 0; }
+.style-col--tropical { --c: #9ED8BF; --ink: #17734F; }
+.style-col--wood { --c: #DDBF98; --ink: #75491F; }
+.style-col--contemporary { --c: #A9DADE; --ink: #1B6E73; }
+.style-col--family { --c: #F0DC9E; --ink: #7D5E12; }
+.style-col--luxury { --c: #BFCBC6; --ink: #0E342D; }
+.style-col__name { font-family: var(--font-head); font-size: clamp(20px, 2.3vw, 32px); font-weight: 600; color: var(--ink); line-height: 1.2; }
+.style-col__th { font-size: 13px; color: var(--ink); opacity: .8; margin-top: 2px; }
+.style-col__icon { width: 50px; height: 50px; margin: 18px 0 14px; fill: none; stroke: #fff; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(14, 52, 45, .25)); transition: transform .4s; }
+.style-col__line { width: 34px; height: 2px; background: #fff; border-radius: 2px; margin-bottom: 14px; transition: width .4s; }
+.style-col__desc { font-size: 14px; line-height: 1.65; color: var(--forest-2); max-width: 210px; }
+.style-col__cta { margin-top: 14px; font-size: 13px; font-weight: 600; color: var(--ink); background: rgba(255, 255, 255, .7); padding: 5px 12px; border-radius: 999px; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
+.style-col__house { position: absolute; z-index: 3; left: 50%; bottom: -30px; width: 128%; max-width: none; translate: -50% 0; transition: translate .4s, opacity .4s; pointer-events: none; }
+.style-col:hover .style-col__icon, .style-col.is-active .style-col__icon { transform: scale(1.12) rotate(-6deg); }
+.style-col:hover .style-col__line, .style-col.is-active .style-col__line { width: 60px; }
+.style-col:hover .style-col__cta, .style-col.is-active .style-col__cta, .style-col:focus-visible .style-col__cta { opacity: 1; transform: none; }
+.style-col:hover .style-col__house, .style-col.is-active .style-col__house { translate: -50% -10px; }
+.style-col.is-active::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--ink); }
+.style-col:first-child.is-active::before { border-radius: 24px 0 0 0; }
+.style-col:last-child.is-active::before { border-radius: 0 24px 0 0; }
+.style-col:focus-visible { outline-offset: -4px; }
+.has-active .style-col:not(.is-active) { --c: #DCE7E4; }
+.has-active .style-col:not(.is-active) .style-col__house { opacity: .55; }
+.island {
+  position: relative; z-index: 2; display: block; pointer-events: none;
+  width: min(1420px, 118vw); height: auto; aspect-ratio: 1400 / 330; max-width: none;
+  margin: calc(30px - min(1420px, 118vw) * 83 / 1400) auto 0;
+  left: 50%; translate: -50% 0;
+}
 .plan__badge { position: absolute; left: 12px; top: 12px; background: rgba(255, 255, 255, .92); font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; color: var(--forest-2); }
 .plan__body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .plan__code { font-family: var(--font-head); font-size: 24px; font-weight: 600; }
@@ -312,6 +369,24 @@ p { margin: 0; }
   .fab__btn { flex: 1; text-align: center; padding: 13px; border-radius: 999px; background: #fff; color: var(--forest); font-family: var(--font-head); font-weight: 600; text-decoration: none; box-shadow: var(--shadow); border: 1px solid var(--line); }
   .fab__btn--primary { background: var(--leaf); color: #fff; border-color: var(--leaf); }
   .footer { padding-bottom: 96px; }
+
+  /* สไตล์บ้านบนมือถือ: การ์ดเลื่อนแนวนอน แต่ละใบมีบ้านบนแถบหญ้า */
+  .styles-stage { overflow: visible; }
+  .style-cols {
+    display: flex; height: auto; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: -16px; padding: 4px 16px 18px; scrollbar-width: none;
+  }
+  .style-cols::-webkit-scrollbar { display: none; }
+  .style-col, .style-col:first-child, .style-col:last-child {
+    flex: 0 0 min(78%, 320px); height: 470px; border-radius: 24px; overflow: hidden; scroll-snap-align: center;
+    background:
+      linear-gradient(to top, #5E9F48 0 12%, #7DBB63 12% 15%, transparent 15%),
+      linear-gradient(180deg, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #D9EEF0) 55%, #D9EEF0 100%);
+  }
+  .style-col__house { width: 104%; bottom: 9%; }
+  .style-col__cta { opacity: 1; transform: none; }
+  .style-col.is-active::before { border-radius: 24px 24px 0 0; }
+  .island { display: none; }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
